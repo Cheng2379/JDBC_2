@@ -26,6 +26,8 @@ public class JDBCUtils {
      */
     public static Connection getConnection() throws Exception {
         //1.读取配置文件信息
+        //2.在JavaEE中，配置文件得放在target/classes文件当中,并且只能通过类本身调用getResourceAsStream方法,路径前加/
+//        InputStream is = JDBCUtil.class.getResourceAsStream("/jdbc.properties");
         InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("utils/jdbc.properties");
 
         Properties pro = new Properties();
