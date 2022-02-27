@@ -16,10 +16,10 @@ public abstract class BaseDao<T> {
 
     private Class<T> clazz = null;
 
-    {
+    public BaseDao() {
         Type type = this.getClass().getGenericSuperclass();
         ParameterizedType paramType = (ParameterizedType) type;
-        Type[] typeArguments = paramType.getActualTypeArguments();//获取父类的泛型参数
+        Type[] typeArguments = paramType.getActualTypeArguments();//获取父类的泛型参数(获取实际类型参数)
         clazz = (Class<T>)typeArguments[0];//泛型第一个参数
     }
 
@@ -74,13 +74,16 @@ public abstract class BaseDao<T> {
                 ps.setObject(i + 1, args[i]);
             }
             resultSet = ps.executeQuery();
+            //获取结果集的元数据
             ResultSetMetaData rsmd = resultSet.getMetaData();
+            //获取结果集的列数
             int columnCount = rsmd.getColumnCount();
 
             if (resultSet.next()) {
                 T t = clazz.newInstance();
                 for (int i = 0; i < columnCount; i++) {
                     Object columnValue = resultSet.getObject(i + 1);
+                    //获取列标签
                     String columnLabel = rsmd.getColumnLabel(i + 1);
                     Field field = clazz.getDeclaredField(columnLabel);
                     field.setAccessible(true);
