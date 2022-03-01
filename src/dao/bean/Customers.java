@@ -10,18 +10,18 @@ import java.sql.Date;
  *
  */
 
-public class Customers {
+public class Fruit {
 
     private int id;
     private String name;
     private String email;
     private Date birth;
 
-    public Customers() {
+    public Fruit() {
         super();
     }
 
-    public Customers(int id, String name, String email, Date birth) {
+    public Fruit(int id, String name, String email, Date birth) {
         this.id = id;
         this.name = name;
         this.email = email;
