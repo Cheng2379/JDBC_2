@@ -10,6 +10,13 @@ import java.util.List;
 
 /**
  * 封装了针对于数据表的通用操作
+ * 存储数据的bean类实体类属性名必须与查询出的数据表的字段别名(列名)一致,若不一致，则会报反射NoSuchFieldException异常
+ *
+ * 反射异常(NoSuchFieldException)解决办法：
+ * 1、修改对象属性
+ * 2、给查询出的字段加别名和实体类属性名一致
+ * 3.使用RequestSetMetaData()时，需要使用getColumnLabel()来替换获取列的别名.  -> getColumnLabel()获取的就是列名
+ *
  */
 
 public abstract class BaseDao<T> {
@@ -65,7 +72,7 @@ public abstract class BaseDao<T> {
      * @param args  要填充的占位符
      * @return 查询后返回的数据，没有查询结果则返回null
      */
-    public  T query(Connection connection,String sql, Object... args) {
+    public T query(Connection connection,String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
@@ -125,6 +132,7 @@ public abstract class BaseDao<T> {
                 for (int i = 0; i < columnCount; i++) {
                     Object columnValue = resultSet.getObject(i + 1);
                     String columnLabel = rsmd.getColumnLabel(i + 1);
+
                     Field field = clazz.getDeclaredField(columnLabel);
                     field.setAccessible(true);
                     field.set(t, columnValue);

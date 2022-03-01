@@ -1,5 +1,6 @@
-package dao;
+package dao.customersdao;
 
+import dao.BaseDao;
 import dao.bean.Customers;
 import java.sql.Connection;
 import java.sql.Date;

@@ -1,4 +1,4 @@
-package dao;
+package dao.customersdao;
 
 import dao.bean.Customers;
 import org.junit.jupiter.api.Test;

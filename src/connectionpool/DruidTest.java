@@ -1,7 +1,7 @@
 package connectionpool;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
-import dao.CustomersDaoImpl;
+import dao.customersdao.CustomersDaoImpl;
 import dao.bean.Customers;
 import org.junit.jupiter.api.Test;
 import utils.JDBCUtils;

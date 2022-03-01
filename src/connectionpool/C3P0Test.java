@@ -1,7 +1,7 @@
 package connectionpool;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import dao.CustomersDaoImpl;
+import dao.customersdao.CustomersDaoImpl;
 import dao.bean.Customers;
 import org.junit.jupiter.api.Test;
 import utils.JDBCUtils;

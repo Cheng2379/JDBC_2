@@ -1,6 +1,6 @@
 package connectionpool;
 
-import dao.CustomersDaoImpl;
+import dao.customersdao.CustomersDaoImpl;
 import dao.bean.Customers;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbcp.BasicDataSourceFactory;
